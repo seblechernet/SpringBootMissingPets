@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert ="base :: header"></th:block>
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<h2>Results</h2>
+
+<div th:each="result:${results}">
+    <p th:text="${result.name}"></p>
+    <p th:text="${result.petFound}"></p>
+</div>
+
+<div th:replace="base :: footer"></div>
+</body>
+</html>

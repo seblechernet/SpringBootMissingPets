@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert ="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<span sec:authorize="isAuthenticated()">
+    <a href="/">All Pets</a>
+      <a href="/lost">Lost Pets</a>
+    <a href="/found">Found Pets</a>
+  <a href="/add">Add Message</a>
+  <a href="/logout">Logout</a>
+  <span>Welcome</span>
+</span>
+
+<span sec:authorize="!isAuthenticated()">
+        <a href="/">All Pets</a>
+      <a href="/lost">Lost Pets</a>
+    <a href="/found">Found Pets</a>
+  <a href="/login">Login</a>
+      <a href="/register">Register</a>
+
+</span>
+
+<div th:fragment="container"></div>
+
+<table class="table table-striped">
+    <thead>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pet : ${pets}">
+        <td><img th:src="${pet.postImg}" width="300" height="200" alt="post image"/></td>
+        <td th:text="${pet.name}"></td>
+        <td th:text="${pet.datePosted}"><</td>
+        <td th:text="${pet.description}"></td>
+        <td th:text="${pet.petFound}"></td>
+
+        <div sec:authorize="hasAuthority('USER')">
+            <a class="btn btn-info" th:href="@{/update/{id}(id=${pet.id})}">Update</a>
+        </div>
+
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <a class="btn btn-info" th:href="@{/update/{id}(id=${pet.id})}">Update</a>
+
+
+            <a class="btn btn-info" th:href="@{/detail/{id}(id=${pet.id})}">View</a>
+
+
+            <a class="btn btn-info" th:href="@{/delete/{id}(id=${pet.id})}">Delete</a></div>
+        </td></tr>
+    </tbody>
+</table>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>
+
+

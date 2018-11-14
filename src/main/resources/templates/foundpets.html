@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:insert ="base :: header"></th:block>
+</head>
+<body>
+
+<span sec:status="found()">
+    <h2>found</h2>
+    <a href="/">All Pets</a>
+      <a href="/lost">Lost Pets</a>
+    <a href="/found">Found Pets</a>
+  <a href="/add">Add Message</a>
+  <a href="/logout">Logout</a>
+  <span>Welcome</span>
+</span>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>

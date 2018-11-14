@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <th:block th:insert ="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<p th:text="${message}"></p>
+
+<div th:replace="base :: footer"></div>
+</body>
+</html>

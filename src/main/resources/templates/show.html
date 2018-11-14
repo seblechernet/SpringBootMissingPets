@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container bg-light">
+
+    <h3 class="p-4">Show all Pets</h3><hr/>
+
+    <div class="space"></div>
+
+    <div>
+        <img th:src="${message.postImg}" width="300" height="200" alt="post image"/>
+        <div class="space"></div>
+    </div>
+
+    <div>
+        <div th:text="${message.description}"> </div>
+    </div>
+
+    <div>
+        Posted by: <strong><span th:text="${message.user.username}"></span></strong> on
+        <span
+                th:text="${message.datePosted}"></span>
+    </div>
+
+    <div class="emptySpace"></div>
+</div>
+
+<a th:href="@{/delete/{id}(id=${message.id})}">Delete this pet listing</a>
+
+<div th:replace="base :: footer"></div>
+</body>
+</html>

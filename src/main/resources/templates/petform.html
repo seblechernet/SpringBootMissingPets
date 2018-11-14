@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Add New Message</title>
+    <link th:href="@{/css/messageform.css}" rel="stylesheet"/>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<form action="#"
+      th:action="@{/process}"
+      th:object="${message}"
+      enctype="multipart/form-data"
+      method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <input type="hidden" th:value="${user_id}" name="user_id">
+
+    Name :<input type="text" th:field="*{name}" />
+    <span th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span><br />
+    Description :<textarea rows="3" th:field="*{description}" />
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"></span><br />
+    Date posted :<input type="date" th:field="*{datePosted}" />
+    <span th:if="${#fields.hasErrors('datePosted')}"
+          th:errors="*{datePosted}"></span><br />
+
+    <select id="petFound" th:field="*{petFound}">
+        <option class="dropdown-item" value="lost">Lost</option>
+        <option class="dropdown-item" value="found">Found</option>
+    </select>
+
+    <span th:if="${#fields.hasErrors('petFound')}"
+          th:errors="*{petFound}"></span><br />
+    <br />
+
+    <input class="form-control-file" type="file" name="file"/>
+
+    <input type="hidden" th:value="${imageURL}" name="hiddenImgURL"/>
+
+    <input class="submit-btn" type="submit" value="Submit"/>
+    <div class="space"></div>
+</form>
+<div th:replace="base :: footer"></div>
+</body>
+</html>

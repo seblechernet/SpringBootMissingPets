@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Missing Pets</title>
+    <th:block th:fragment="header">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </th:block>
+</head>
+<body>
+
+<div th:fragment="nav">
+
+    <nav class="navbar navbar navbar-expand-lg navbar-light bg-dark" th:fragment="main-navbar">
+        <a class="navbar-brand text-white" href="/">
+            &nbsp;Missing Pets
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--</nav>-->
+            <ul class="nav navbar-nav ml-auto">
+                <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
+                    Welcome [[${#authentication.name}]]!
+                </li>
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item text-light">
+                    <a class="nav-link text-white" href="/register">Register</a>
+                </li>
+
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/login">Login</a>
+                </li>
+                <li class="nav-item text-light">
+                    <a class="nav-link text-white" href="/">Home</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item text-light">
+                    <a class="nav-link text-white" href="/add">Add a Missing Pet</a>
+                </li>
+
+                <li class="nav-item">
+                    <a sec:authorize="isAuthenticated()" class="nav-link text-white"        href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="space"></div>
+
+    <div class="jumbotron text-center">
+
+        <h1>Help Find Missing Pets! &#9785;</h1>
+    </div>
+
+    <div class="space"></div>
+
+</div>
+
+<div th:fragment="footer">
+    Copyright 2018
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+</div>
+
+</body>
+</html>
